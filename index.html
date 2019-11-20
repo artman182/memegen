@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src= "code.js"></script>
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+<memeapp ng-app="myApp" ng-controller="myCtrl" ng-init="caption1='Top Caption'; caption2='Bottom Caption'; caption3='First Caption'; caption4='Second Caption'; caption5='Third Caption'; caption6='Fourth Caption'" class="main">
+
+<header><h1>JP's Meme Maker!</h1></header>
+
+<instructions> Choose a meme image from the thumb nails on the right and click on it, and then use the caption tools below to set the bottom and top captions. Use the form below to input the <a href="http://memegenerator.net/" target="_blank">meme generator</a> image URL of a meme image you'd like to add to the choices. Once your image is set, take a screen shot, open the image in <a href="http://pixlr.com/editor/" target="_blank">this convenient online photo editor</a>, crop it, save it, SHARE IT!</instructions>
+
+<addmeme>
+    <form>
+    <memeurlinput></memeurlinput>
+    <button class="" ng-click="addMemeImg()">Add New Meme Image</button>
+    </form>
+    <div ng-controller="customersCtrl"> 
+<div class="searchurl"><input type="text" ng-model="search"></div>
+
+<div class="searchurl">
+  <p ng-repeat="x in names | filter:search">
+    {{ x.Name + ' ' + x.URL }}
+  </p>
+  </div>
+
+</div>
+  </addmeme>
+
+<memecont>
+    <memeimg></memeimg>
+    <mcaption class="memecaption1"></mcaption>
+    <mcaption2 class="memecaption2"></mcaption2>
+  </memecont>
+
+
+<memethumbs class="memes">
+     <memethumb ng-repeat="imgurl in memeimgs">
+     <img ng-src="{{imgurl.url}}" ng-click="setThisURL(imgurl)" />
+    </memethumb>
+  </memethumbs>
+
+<clear></clear>
+  
+  
+  <captionset>
+    
+   <captionset-top>
+     <p><input type="text" ng-model="caption1"></p>
+     <p>Or, select one:<br><br>
+      <select ng-model="caption1">
+      <option ng-repeat="selections in captionselect">{{ selections.option }}</option>
+      </select>
+     </p>
+   </captionset-top>
+  
+   <captionset-btm>
+    <p><input type="text" ng-model="caption2"></p>
+     <p>Or, select one:<br><br>
+      <select ng-model="caption2">
+      <option ng-repeat="selections in captionselect2">{{ selections.option }}</option>
+      </select>
+     </p>
+   </captionset-btm>
+  
+   <captionset-chng><br><br>
+    <makecaptiondark></makecaptiondark>
+    <br>
+     <makecaptionlight></makecaptionlight>
+    <br>
+     <makecaptionsmaller></makecaptionsmaller>
+    <br>
+     <makecaptionsbig></makecaptionsbig>
+   </captionset-chng>
+  
+  </captionset>
+  
+  <hr>
+  <h2>Multi Panel/Multi Caption Memes</h2>
+  <h3>Harry/Hermione Scare Tactic</h3>
+  <memecont class="mpmc hp">
+    
+    <mcaption3 class="memecaption3"></mcaption3>
+    <mcaption4 class="memecaption4"></mcaption4>
+    <mcaption5 class="memecaption5"></mcaption5>
+    
+  </memecont>
+  <br>
+  <p><input type="text" ng-model="caption3"></p>
+  <p><input type="text" ng-model="caption4"></p>
+  <p><input type="text" ng-model="caption5"></p>
+  
+</memeapp>
+
+</body>
+</html>
